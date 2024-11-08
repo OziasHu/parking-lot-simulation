@@ -1,0 +1,83 @@
+//Xuanchang Hu
+//03/13/2023
+//EE 371
+//Lab6 task2
+module datapath (clk, reset, enter, exit, hours, num, maxCar, rushHour, endHour);
+   input logic clk, reset, enter, exit;
+	input logic [2:0] hours;
+	
+	output logic [1:0] num;
+	output logic [1:0] maxCar;
+	output logic [2:0] rushHour, endHour;
+	
+	logic rush;
+	
+	always_ff @(posedge clk) begin
+           if (reset) begin
+			        num <= 0;
+                 maxCar <= 0;
+           end else begin
+			     if (enter && (num < 3)) begin
+				     num <= num + 1;
+					  maxCar <= maxCar + 1;
+				  end
+			     
+				  if (exit && (num > 0)) begin
+				     num <= num - 1;
+			     end 	  
+                 
+				  	  
+					  
+				end	  
+     end
+	//
+	
+	always_ff @(posedge clk) begin
+           if (reset) begin
+					  rushHour <= 0;
+					  endHour <= 0;
+					  rush <= 0;
+           end else begin
+			     if ((rush == 0) && (num == 3)) begin
+				     rush <= 1;
+					  rushHour <= hours;
+				  end
+			     
+				  if ((rush == 1) && (num == 0)) begin
+				     endHour <= hours;
+			     end 	  
+                 
+				  
+					  
+					  
+				end	  
+     end
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+endmodule

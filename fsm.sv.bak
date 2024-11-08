@@ -1,0 +1,14 @@
+//Xuanchang Hu
+//03/13/2023
+//EE 371
+//Lab6 task1
+
+// fsm implement a state diagram that will change to different states when cars are entering or exiting 
+// parking lot. It takes clk, reset as input. It also takes a and b as inputs, which is sensor a and b.
+//And it takes enter and exit as output to show if cars enter or exit the parking lot. 
+	module fsm(clk, reset, enter, exit, increaseTime, countS);
+     input logic clk, reset, enter, exit, increaseTime;
+     output logic enter, exit;
+     
+  // Setting 9 states to track cars entering or exiting parking lot, and set present and next state
+     enum {none, enterA, enterAB, enterB, enterAll, exitB, exitBA, exitA, exitAll} ps, ns;
